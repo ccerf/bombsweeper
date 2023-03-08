@@ -1,7 +1,7 @@
 export interface Cell {
-    x?: number;
-    y?: number;
+    row: number;
+    column: number;
     status: 'open' | 'clear' | 'flag';
     bomb: boolean;
-    proximityMines: number;
+    proximityBombs: number;
 }

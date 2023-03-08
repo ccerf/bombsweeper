@@ -1,7 +1,15 @@
+<div class="flex flex-col h-4/6 justify-center">
 <table>
     <tbody>
         <tr *ngFor="let row of cells">
-            <td *ngFor="let cell of row">{{cell.bomb}}0</td>
+            <td *ngFor="let cell of row" class="text-center" (click)="checkCell(cell)" (contextmenu)="flag(cell,$event)" [ngClass]="{'clear': cell.status === 'clear', 'flag ring-2 ring-blue-300 ring-inset' : cell.status === 'flag', 'bomb' : cell.status === 'clear' && cell.bomb, 'p-1 bg-slate-300': cell.status==='open' }">
+                <span *ngIf="cell.bomb && cell.status === 'clear'" class="material-symbols-outlined">coronavirus</span>
+                <span *ngIf="!cell.bomb && cell.status === 'clear' && cell.proximityBombs">{{cell.proximityBombs}}</span>
+                <span *ngIf="cell.status === 'flag'" class="material-symbols-outlined">flag</span>
+            </td>
         </tr>
     </tbody>
 </table>
+
+<button (click)="reset()" class="bg-blue-500 text-white mt-6 p-4 rounded-lg">Reset</button>
+</div>
