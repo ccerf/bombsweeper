@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Cell } from '../models';
 import { CommonModule } from '@angular/common';
+import { InfobarComponent } from '../infobar/infobar.component';
 
 @Component({
   standalone: true,
   selector: 'app-board',
-  imports: [CommonModule],
+  imports: [CommonModule, InfobarComponent],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements OnInit, AfterViewInit {
+  @ViewChild('infobar') infobar: InfobarComponent;
+
   public cells: Cell[][] = [];
 
   private rowsCount = 10;
@@ -23,13 +26,17 @@ export class BoardComponent implements OnInit {
     this.createBoard();
   }
 
+  ngAfterViewInit(): void {
+    this.infobar.flagCount = this.bombsCount;
+  }
+
   public checkCell(cell: Cell): 'gameover' | 'win' | null {
-    console.log('hllo')
+    this.infobar.startTimer();
     if (cell.status !== 'open') {
       return null;
     } else if (cell.bomb) {
       this.clearAll();
-      alert('gameover');
+      this.lose();
       return 'gameover';
     } else {
       cell.status = 'clear';
@@ -47,7 +54,7 @@ export class BoardComponent implements OnInit {
       }
 
       if (this.cellsToClear === 0) {
-        alert('win');
+        this.win()
         return 'win'
       } else {
         return null;
@@ -56,16 +63,23 @@ export class BoardComponent implements OnInit {
   }
 
   public flag(cell: Cell, event: MouseEvent): void {
+    this.infobar.startTimer();
     event.preventDefault();
     if(cell.status === 'flag') {
       cell.status = 'open';
+      this.infobar.flagCount++;
     } else {
       cell.status = 'flag';
+      this.infobar.flagCount--;
+    }
+    if (this.cellsToClear + this.infobar.flagCount === 0) {
+      this.win();
     }
   }
 
   public reset(): void {
     this.createBoard();
+    this.resetInfobar();
   }
 
   private createBoard(): void {
@@ -139,6 +153,21 @@ export class BoardComponent implements OnInit {
         }
       }
     }
+  }
+
+  private resetInfobar(): void {
+    this.infobar.flagCount = this.bombsCount;
+    this.infobar.resetTimer();
+  }
+
+  private lose(): void {
+    this.infobar.stopTimer();
+    alert(`You lose !!! Vous êtes vraiment trop thibaud !`);
+  }
+
+  private win(): void {
+    this.infobar.stopTimer();
+    alert(`Win !!! Your time is ${this.infobar.timer} secondes !`);
   }
  
 }
