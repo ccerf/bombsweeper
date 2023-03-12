@@ -1,4 +1,7 @@
 <div class="flex flex-row pb-4 place-content-evenly ">
+    <select  class="bg-white w p-2 rounded-lg w-1/5 text-center" (change)="changeLevel($event)">
+        <option *ngFor="let level of levels" [value]="level.value" >{{level.label}}</option>
+    </select>
     <div class="bg-white w p-2 rounded-lg w-1/5 text-center">
         <span class="material-symbols-outlined">flag</span><span class="text-lg">{{flagCount}}</span>
     </div>

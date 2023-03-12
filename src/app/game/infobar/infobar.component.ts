@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -9,12 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./infobar.component.scss']
 })
 export class InfobarComponent {
-  public flagCount = 0;
+  @Output() levelChanged = new EventEmitter();
+  public flagCount = 10;
   public timer = 0;
   public displayedTimer = '000';
+  public  levels = [{label: 'Easy', value : 1},{label: 'Medium', value : 2},{label: 'Hard', value : 3}];
 
+  private currentLevel = 1;
   private gameStarted = false;
   private interval: any;
+
+  public changeLevel(event: Event): void {
+    this.currentLevel = +(event.target as HTMLSelectElement).value;
+    this.levelChanged.emit(this.currentLevel);
+  }
 
   public startTimer(): void {
     if (!this.gameStarted) {
@@ -28,7 +36,6 @@ export class InfobarComponent {
         } else {
           this.displayedTimer = this.timer.toString();
         }
-        console.log('hello')
       },1000)
     }
   }

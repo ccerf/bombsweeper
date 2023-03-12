@@ -22,7 +22,6 @@ export class BoardComponent implements OnInit, AfterViewInit {
   private cellsToClear = 0;
 
   ngOnInit(): void {
-    this.cellsToClear = this.rowsCount * this.columnsCount - this.bombsCount;
     this.createBoard();
   }
 
@@ -82,7 +81,32 @@ export class BoardComponent implements OnInit, AfterViewInit {
     this.resetInfobar();
   }
 
+  public onLevelChanged(level: number): void {
+    switch(level) {
+      case 2:
+        this.rowsCount = 18;
+        this.columnsCount = 14;
+        this.bombsCount = 40;
+        this.reset();
+        break;
+      case 3:
+        this.rowsCount = 24;
+        this.columnsCount = 20;
+        this.bombsCount = 99;
+        this.reset();
+        break;
+      default:
+        this.rowsCount = 10;
+        this.columnsCount = 10;
+        this.bombsCount = 10;
+        this.reset();
+        break;
+    }
+  }
+
   private createBoard(): void {
+    this.cells= [];
+    this.cellsToClear = this.rowsCount * this.columnsCount - this.bombsCount;
     for(let y = 0; y < this.columnsCount; y++) {
       this.cells[y] = []
       for (let x=0; x < this.rowsCount; x ++) {
@@ -122,7 +146,7 @@ export class BoardComponent implements OnInit, AfterViewInit {
   private getRandomCell(): Cell {
     const y = Math.floor(Math.random() * this.columnsCount);
     const x = Math.floor(Math.random() * this.rowsCount )
-    return this.cells[x][y];
+    return this.cells[y][x];
   }
 
   private getBombCount(): number {
