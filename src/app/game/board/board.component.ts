@@ -71,7 +71,7 @@ export class BoardComponent implements OnInit, AfterViewInit {
       cell.status = 'flag';
       this.infobar.flagCount--;
     }
-    if (this.cellsToClear + this.infobar.flagCount === 0) {
+    if (this.cellsToClear - this.bombsCount === 0) {
       this.win();
     }
   }
