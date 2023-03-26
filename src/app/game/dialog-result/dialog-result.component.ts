@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -13,5 +13,10 @@ export class DialogResultComponent {
   @Input() win = false;
   @Input() lose = false;
   @Input() timer: string;
+  @Output() resetEvent = new  EventEmitter<boolean>()
 
+
+  public emitReset(): void {
+    this.resetEvent.emit(true)
+  }
 }
