@@ -2,11 +2,12 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Cell } from '../models';
 import { CommonModule } from '@angular/common';
 import { InfobarComponent } from '../infobar/infobar.component';
+import { DialogResultComponent } from '../dialog-result/dialog-result.component';
 
 @Component({
   standalone: true,
   selector: 'app-board',
-  imports: [CommonModule, InfobarComponent],
+  imports: [CommonModule, InfobarComponent, DialogResultComponent],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
@@ -14,6 +15,8 @@ export class BoardComponent implements OnInit, AfterViewInit {
   @ViewChild('infobar') infobar: InfobarComponent;
 
   public cells: Cell[][] = [];
+  public lose = false;
+  public win = false;
 
   private rowsCount = 10;
   private columnsCount = 10;
@@ -35,7 +38,7 @@ export class BoardComponent implements OnInit, AfterViewInit {
       return null;
     } else if (cell.bomb) {
       this.clearAll();
-      this.lose();
+      this.onLose();
       return 'gameover';
     } else {
       cell.status = 'clear';
@@ -53,7 +56,7 @@ export class BoardComponent implements OnInit, AfterViewInit {
       }
 
       if (this.cellsToClear === 0) {
-        this.win()
+        this.onWin()
         return 'win'
       } else {
         return null;
@@ -72,11 +75,13 @@ export class BoardComponent implements OnInit, AfterViewInit {
       this.infobar.flagCount--;
     }
     if (this.cellsToClear - this.bombsCount === 0) {
-      this.win();
+      this.onWin();
     }
   }
 
   public reset(): void {
+    this.win = false;
+    this.lose = false;
     this.createBoard();
     this.resetInfobar();
   }
@@ -184,14 +189,14 @@ export class BoardComponent implements OnInit, AfterViewInit {
     this.infobar.resetTimer();
   }
 
-  private lose(): void {
+  private onLose(): void {
     this.infobar.stopTimer();
-    alert(`You lose !!! Vous êtes vraiment trop thibaud !`);
+    this.lose = true;
   }
 
-  private win(): void {
+  private onWin(): void {
     this.infobar.stopTimer();
-    alert(`Win !!! Your time is ${this.infobar.timer} secondes !`);
+    this.win = true;
   }
  
 }

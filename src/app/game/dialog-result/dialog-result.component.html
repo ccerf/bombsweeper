@@ -1,1 +1,6 @@
-<p>dialog-result works!</p>
+<div class="dialog-container flex justify-center items-center">
+    <div class="result-container items-center">
+        <h1 *ngIf="win">Win !!! Your time is ${{timer}} secondes !</h1>
+        <h1 *ngIf="lose">You lose !!! Vous êtes vraiment trop thibaud !</h1>
+    </div>
+</div>
