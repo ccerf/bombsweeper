@@ -1,0 +1,16 @@
+.dialog-container {
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.result-container {
+    position: relative;
+    color: white;
+    opacity: 1 !important;
+    font-size: 30px;
+}
