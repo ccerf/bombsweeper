@@ -3,17 +3,22 @@ import { Cell } from '../models';
 import { CommonModule } from '@angular/common';
 import { InfobarComponent } from '../infobar/infobar.component';
 import { DialogResultComponent } from '../dialog-result/dialog-result.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faBomb } from '@fortawesome/free-solid-svg-icons';
+import { faFlag } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   standalone: true,
   selector: 'app-board',
-  imports: [CommonModule, InfobarComponent, DialogResultComponent],
+  imports: [CommonModule, InfobarComponent, DialogResultComponent, FontAwesomeModule],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit, AfterViewInit {
   @ViewChild('infobar') infobar: InfobarComponent;
 
+  public faBomb = faBomb;
+  public faFlag = faFlag;
   public cells: Cell[][] = [];
   public lose = false;
   public win = false;

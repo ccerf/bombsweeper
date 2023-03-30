@@ -3,7 +3,8 @@
         <option *ngFor="let level of levels" [value]="level.value">{{level.label}}</option>
     </select>
     <div class="bg-white p-2 rounded-lg text-center info-item">
-        <span class="material-symbols-outlined align-middle">flag</span><span class="text-lg align-middle">{{flagCount}}</span>
+        <fa-icon class="align-middle pr-1" [icon]="faFlag"></fa-icon><span class="text-lg align-middle">{{flagCount}}</span>
+        <!-- <span class="material-symbols-outlined align-middle">flag</span><span class="text-lg align-middle">{{flagCount}}</span> -->
     </div>
     <div class="bg-white p-2 rounded-lg text-center info-item">
         <span class="material-symbols-outlined align-middle">timer</span><span class="text-lg align-middle">{{displayedTimer}}</span>

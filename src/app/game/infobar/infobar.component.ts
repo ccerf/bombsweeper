@@ -1,15 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faFlag } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   standalone: true,
   selector: 'app-infobar',
-  imports: [CommonModule],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './infobar.component.html',
   styleUrls: ['./infobar.component.scss']
 })
 export class InfobarComponent {
   @Output() levelChanged = new EventEmitter();
+  public faFlag= faFlag;
   public flagCount = 10;
   public timer = 0;
   public displayedTimer = '000';
