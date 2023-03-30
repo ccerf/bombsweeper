@@ -1,11 +1,11 @@
 <div class="flex flex-row pb-4 place-content-evenly ">
-    <select  class="bg-white p-2 rounded-lg w-1/5 text-justify" (change)="changeLevel($event)">
+    <select  class="bg-white p-2 rounded-lg info-item" (change)="changeLevel($event)">
         <option *ngFor="let level of levels" [value]="level.value">{{level.label}}</option>
     </select>
-    <div class="bg-white p-2 rounded-lg w-1/5 text-center">
+    <div class="bg-white p-2 rounded-lg text-center info-item">
         <span class="material-symbols-outlined align-middle">flag</span><span class="text-lg align-middle">{{flagCount}}</span>
     </div>
-    <div class="bg-white p-2 rounded-lg w-1/5 text-center">
+    <div class="bg-white p-2 rounded-lg text-center info-item">
         <span class="material-symbols-outlined align-middle">timer</span><span class="text-lg align-middle">{{displayedTimer}}</span>
     </div>
 </div>
