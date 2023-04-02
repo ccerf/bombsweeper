@@ -1,0 +1,8 @@
+<form [formGroup]="form">
+	<input type="text" formControlName="pseudo" />
+	<br />
+	<p>Your time is {{ timer }} secondes ! on level {{ level }}</p>
+	<input type="hidden" formControlName="timer" />
+	<input type="hidden" formControlName="level" />
+	<button type="submit" (click)="onSubmit(form)">Save</button>
+</form>
