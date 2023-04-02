@@ -5,6 +5,7 @@ import { Score } from "../models";
 
 @Component({
 	standalone: true,
+	imports: [CommonModule],
 	selector: "app-scores-table",
 	templateUrl: "./scores-table.component.html",
 	styleUrls: ["./scores-table.component.scss"],

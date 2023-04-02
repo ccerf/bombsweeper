@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { Firestore, collection, addDoc } from "@angular/fire/firestore";
 
@@ -13,6 +13,8 @@ import { Firestore, collection, addDoc } from "@angular/fire/firestore";
 export class ScoreFormComponent implements OnInit {
 	@Input() timer: string = "00";
 	@Input() level: string = "easy";
+	@Output() newGame = new EventEmitter();
+
 	public form: FormGroup;
 
 	constructor(private formBuilder: FormBuilder, private firestore: Firestore) {}
@@ -25,11 +27,16 @@ export class ScoreFormComponent implements OnInit {
 		});
 	}
 
+	emitReset(): void {
+		this.newGame.emit();
+	}
+
 	onSubmit(form: any) {
 		const collectionInstance = collection(this.firestore, "scores");
 		addDoc(collectionInstance, form.value)
 			.then(() => {
 				console.log("success");
+				this.emitReset();
 			})
 			.catch((error) => {
 				console.log(error);
