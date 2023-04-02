@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { Firestore, collection, addDoc } from "@angular/fire/firestore";
 
 @Component({
 	standalone: true,
@@ -10,11 +11,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 	styleUrls: ["./score-form.component.scss"],
 })
 export class ScoreFormComponent implements OnInit {
-	@Input() timer: string = "";
+	@Input() timer: string = "00";
 	@Input() level: string = "easy";
 	public form: FormGroup;
 
-	constructor(private formBuilder: FormBuilder) {}
+	constructor(private formBuilder: FormBuilder, private firestore: Firestore) {}
 
 	ngOnInit(): void {
 		this.form = this.formBuilder.group({
@@ -25,6 +26,13 @@ export class ScoreFormComponent implements OnInit {
 	}
 
 	onSubmit(form: any) {
-		console.log(form);
+		const collectionInstance = collection(this.firestore, "scores");
+		addDoc(collectionInstance, form.value)
+			.then(() => {
+				console.log("success");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 }
