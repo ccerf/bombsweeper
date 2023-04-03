@@ -1,0 +1,30 @@
+<form [formGroup]="form" class="mt-4">
+	<div class="input-box">
+		<input class="ml-2 p-1 rounded-sm focus:outline-none" id="pseudoInput" type="text" formControlName="pseudo" />
+		<label
+			class="text-white text-xl"
+			[ngClass]="{ 'filled-input': form.get('pseudo')?.value.length > 0 }"
+			for="pseudoInput"
+			>Pseudo
+		</label>
+	</div>
+	<input type="hidden" formControlName="timer" />
+	<input type="hidden" formControlName="level" />
+	<div class="flex space-x-4 mt-2">
+		<button
+			[disabled]="!form.get('pseudo')?.value"
+			type="submit"
+			(click)="onSubmit(form)"
+			class="inline-block text-xl text-white border-solid border-2 rounded-md border-white px-4 py-2 mt-2 hover:opacity-50 disabled:opacity-50"
+		>
+			Save and New Game
+		</button>
+		<button
+			type="button"
+			(click)="emitReset()"
+			class="inline-block text-xl text-white border-solid border-2 rounded-md border-white px-4 py-2 mt-2 hover:opacity-50"
+		>
+			New Game
+		</button>
+	</div>
+</form>

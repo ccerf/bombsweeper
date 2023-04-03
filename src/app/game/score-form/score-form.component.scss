@@ -1,0 +1,32 @@
+.input-box {
+	position: relative;
+	width: 100%;
+	border-bottom: 2px solid white;
+}
+
+.input-box label {
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	transform: translateY(-50%);
+	color: #fff;
+	font-size: 1.2em;
+	transition: 0.5s;
+	&.filled-input {
+		top: 10px;
+	}
+}
+
+input:focus ~ label {
+	top: 10px;
+}
+
+.input-box input {
+	width: 100%;
+	height: 50px;
+	background-color: transparent;
+	border: none;
+	font-size: 1.2em;
+	padding: 35px 0 5px;
+	color: #fff;
+}
