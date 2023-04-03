@@ -1,6 +1,14 @@
 <nav flex>
 	<ul class="flex flex-row gap-3 text-xl font-bold text-white">
-		<li><a href="">Game</a></li>
-		<li><a href="">High Scores</a></li>
+		<li>
+			<a
+				routerLink=""
+				class="pb-1"
+				routerLinkActive="border-b-2 border-white"
+				[routerLinkActiveOptions]="{ exact: true }"
+				>Game</a
+			>
+		</li>
+		<li><a routerLink="/high-scores" class="pb-1" routerLinkActive="border-b-2 border-white">High Scores</a></li>
 	</ul>
 </nav>
