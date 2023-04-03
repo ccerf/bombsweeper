@@ -1,0 +1,42 @@
+<h2 class="text-3xl font-bold text-gray-400 pl-2 pt-2">High Scores</h2>
+<div class="flex flex-row">
+	<table>
+		<thead>
+			<tr>
+				<th>EASY</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let row of easyScores">
+				<td>{{ row.pseudo }}</td>
+				<td>{{ row.timer }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<table>
+		<thead>
+			<tr>
+				<th>MEDIUM</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let row of mediumScores">
+				<td>{{ row.pseudo }}</td>
+				<td>{{ row.timer }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<table>
+		<thead>
+			<tr>
+				<th>HARD</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let row of hardScores">
+				<td>{{ row.pseudo }}</td>
+				<td>{{ row.timer }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
