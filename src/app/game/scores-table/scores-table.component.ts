@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { DocumentData, Firestore, collection, collectionData } from "@angular/fire/firestore";
+import { DocumentData, Firestore, collection, collectionData, orderBy, query, where } from "@angular/fire/firestore";
 import { Score } from "../models";
 
 @Component({
@@ -23,7 +23,8 @@ export class ScoresTableComponent implements OnInit {
 
 	private getScores(): void {
 		const collectionInstance = collection(this.firestore, "scores");
-		collectionData(collectionInstance).subscribe((result: DocumentData[]) => {
+		const q = query(collectionInstance, orderBy("timer"));
+		collectionData(q).subscribe((result: DocumentData[]) => {
 			const scores = result as Score[];
 			this.easyScores = scores.filter((score) => score.level === "easy");
 			this.mediumScores = scores.filter((score) => score.level === "medium");

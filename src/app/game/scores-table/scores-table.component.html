@@ -1,41 +1,53 @@
-<h2 class="text-3xl font-bold text-gray-400 pl-2 pt-2">High Scores</h2>
-<div class="flex flex-row">
-	<table>
+<h2 class="text-5xl font-bold text-amber-300 pl-2 pt-2 text-center">High Scores</h2>
+<div class="p-6 grid grid-cols-3 place-content-around text-center gap-4">
+	<table class="table-fixed bg-transparent/25 w-full p-2">
 		<thead>
 			<tr>
-				<th>EASY</th>
+				<th colspan="2" class="text-2xl text-sky-400">EASY</th>
+			</tr>
+			<tr>
+				<th class="text-2xl text-sky-400">PLAYER</th>
+				<th class="text-2xl text-sky-400">TIME</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let row of easyScores">
-				<td>{{ row.pseudo }}</td>
-				<td>{{ row.timer }}</td>
+				<td class="text-xl">{{ row.pseudo | uppercase }}</td>
+				<td class="text-xl">{{ row.timer }}</td>
 			</tr>
 		</tbody>
 	</table>
-	<table>
+	<table class="table-fixed bg-transparent/25 w-full">
 		<thead>
 			<tr>
-				<th>MEDIUM</th>
+				<th colspan="2" class="text-2xl text-sky-400">MEDIUM</th>
+			</tr>
+			<tr>
+				<th class="text-2xl text-sky-400">PLAYER</th>
+				<th class="text-2xl text-sky-400">TIME</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let row of mediumScores">
-				<td>{{ row.pseudo }}</td>
-				<td>{{ row.timer }}</td>
+				<td class="text-xl">{{ row.pseudo | uppercase }}</td>
+				<td class="text-xl">{{ row.timer }}</td>
 			</tr>
 		</tbody>
 	</table>
-	<table>
+	<table class="table-fixed bg-transparent/25 w-full">
 		<thead>
 			<tr>
-				<th>HARD</th>
+				<th colspan="2" class="text-2xl text-sky-400">HARD</th>
+			</tr>
+			<tr>
+				<th class="text-2xl text-sky-400">PLAYER</th>
+				<th class="text-2xl text-sky-400">TIME</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let row of hardScores">
-				<td>{{ row.pseudo }}</td>
-				<td>{{ row.timer }}</td>
+				<td class="text-xl">{{ row.pseudo | uppercase }}</td>
+				<td class="text-xl">{{ row.timer }}</td>
 			</tr>
 		</tbody>
 	</table>

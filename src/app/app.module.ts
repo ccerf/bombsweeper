@@ -11,6 +11,7 @@ import { initializeApp } from "firebase/app";
 import { environment } from "src/environments/environment";
 import { ScoreFormComponent } from "./game/score-form/score-form.component";
 import { ScoresTableComponent } from "./game/scores-table/scores-table.component";
+import { NavbarComponent } from "./game/navbar/navbar.component";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { ScoresTableComponent } from "./game/scores-table/scores-table.component
 		BrowserModule,
 		AppRoutingModule,
 		BoardComponent,
+		NavbarComponent,
 		ScoreFormComponent,
 		ScoresTableComponent,
 		FontAwesomeModule,

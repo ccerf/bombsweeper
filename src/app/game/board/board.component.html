@@ -1,54 +1,56 @@
-<div
-	id="card"
-	class="flex flex-col h-fit justify-center px-8 py-4 bg-sky-900 border-2 border-indigo-600/50 rounded-2xl shadow-2xl shadow-indigo-500/50"
->
-	<app-infobar #infobar (levelChanged)="onLevelChanged($event)"></app-infobar>
-	<table class="border-separate border-spacing-px">
-		<tbody>
-			<tr *ngFor="let row of cells">
-				<td
-					*ngFor="let cell of row"
-					class="text-center hover:opacity-80 rounded-sm"
-					(click)="checkCell(cell)"
-					(contextmenu)="flag(cell, $event)"
-					[ngClass]="{
-						clear: cell.status === 'clear',
-						'flag ring-2 ring-blue-300 ring-inset': cell.status === 'flag',
-						bomb: cell.status === 'clear' && cell.bomb,
-						'p-1 bg-sky-400': cell.status === 'open'
-					}"
-				>
-					<fa-icon
-						*ngIf="cell.bomb && cell.status === 'clear'"
-						class="align-middle text-white"
-						[icon]="faBomb"
-					></fa-icon>
-					<span
-						*ngIf="!cell.bomb && cell.status === 'clear' && cell.proximityBombs"
-						class="font-bold align-middle"
+<div class="flex justify-center self-center min-h-fit">
+	<div
+		id="card"
+		class="flex flex-col h-fit justify-center px-8 py-4 bg-sky-900 border-2 border-indigo-600/50 rounded-2xl shadow-2xl shadow-indigo-500/50"
+	>
+		<app-infobar #infobar (levelChanged)="onLevelChanged($event)"></app-infobar>
+		<table class="border-separate border-spacing-px">
+			<tbody>
+				<tr *ngFor="let row of cells">
+					<td
+						*ngFor="let cell of row"
+						class="text-center hover:opacity-80 rounded-sm"
+						(click)="checkCell(cell)"
+						(contextmenu)="flag(cell, $event)"
 						[ngClass]="{
-							'text-sky-500': cell.proximityBombs === 1,
-							'text-emerald-500': cell.proximityBombs === 2,
-							'text-orange-500': cell.proximityBombs === 3,
-							'text-cyan-700': cell.proximityBombs === 4,
-							'text-red-600': cell.proximityBombs === 5
+							clear: cell.status === 'clear',
+							'flag ring-2 ring-blue-300 ring-inset': cell.status === 'flag',
+							bomb: cell.status === 'clear' && cell.bomb,
+							'p-1 bg-sky-400': cell.status === 'open'
 						}"
-						>{{ cell.proximityBombs }}</span
 					>
-					<!-- <span *ngIf="cell.status === 'flag'" class="material-symbols-outlined align-middle">flag</span> -->
-					<fa-icon *ngIf="cell.status === 'flag'" class="align-middle" [icon]="faFlag"></fa-icon>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<button (click)="reset()" class="bg-blue-500 text-white mt-6 p-4 rounded-lg hover:opacity-80">Reset</button>
-</div>
+						<fa-icon
+							*ngIf="cell.bomb && cell.status === 'clear'"
+							class="align-middle text-white"
+							[icon]="faBomb"
+						></fa-icon>
+						<span
+							*ngIf="!cell.bomb && cell.status === 'clear' && cell.proximityBombs"
+							class="font-bold align-middle"
+							[ngClass]="{
+								'text-sky-500': cell.proximityBombs === 1,
+								'text-emerald-500': cell.proximityBombs === 2,
+								'text-orange-500': cell.proximityBombs === 3,
+								'text-cyan-700': cell.proximityBombs === 4,
+								'text-red-600': cell.proximityBombs === 5
+							}"
+							>{{ cell.proximityBombs }}</span
+						>
+						<!-- <span *ngIf="cell.status === 'flag'" class="material-symbols-outlined align-middle">flag</span> -->
+						<fa-icon *ngIf="cell.status === 'flag'" class="align-middle" [icon]="faFlag"></fa-icon>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button (click)="reset()" class="bg-blue-500 text-white mt-6 p-4 rounded-lg hover:opacity-80">Reset</button>
+	</div>
 
-<app-dialog-result
-	*ngIf="win || lose"
-	[win]="win"
-	[lose]="lose"
-	[timer]="infobar.timer.toString()"
-	(resetEvent)="reset()"
-	[level]="currentLevel"
-></app-dialog-result>
+	<app-dialog-result
+		*ngIf="win || lose"
+		[win]="win"
+		[lose]="lose"
+		[timer]="infobar.timer.toString()"
+		(resetEvent)="reset()"
+		[level]="currentLevel"
+	></app-dialog-result>
+</div>
