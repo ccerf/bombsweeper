@@ -284,6 +284,7 @@ export class BoardComponent implements OnInit, AfterViewInit {
 	}
 
 	private onWin(): void {
+		console.log(this);
 		this.infobar.stopTimer();
 		this.getRank();
 	}
