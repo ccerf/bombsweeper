@@ -1,11 +1,15 @@
-td {
-	color: white;
-}
-
 * {
 	font-family: "hisky", "arial", sans-serif;
 }
 
+td {
+	color: white;
+}
+
 h2 {
 	text-shadow: #dabc10 2px 2px;
+}
+
+table {
+	min-width: 210px;
 }
