@@ -1,10 +1,18 @@
 <div class="dialog-container flex flex-col justify-center items-center">
 	<div class="result-container items-center">
-		<h1 *ngIf="win">You win ! Your time is {{ timer }} secondes !</h1>
+		<h1 *ngIf="win">
+			You win ! Your time is {{ timer }} secondes.<span *ngIf="rank"> You are now ranked n°{{ rank }} !</span>
+		</h1>
 		<h1 *ngIf="lose">You lose ! Try again !</h1>
 	</div>
 
-	<app-score-form *ngIf="win" class="pt-2" [timer]="timer" [level]="level" (newGame)="emitReset()"></app-score-form>
+	<app-score-form
+		*ngIf="win && rank"
+		class="pt-2"
+		[timer]="timer"
+		[level]="level"
+		(newGame)="emitReset()"
+	></app-score-form>
 	<button
 		*ngIf="lose"
 		type="button"

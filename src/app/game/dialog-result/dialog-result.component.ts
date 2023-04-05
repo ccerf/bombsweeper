@@ -13,6 +13,7 @@ export class DialogResultComponent {
 	@Input() win = false;
 	@Input() level = "easy";
 	@Input() lose = false;
+	@Input() rank = 0;
 	@Input() timer: string;
 	@Output() resetEvent = new EventEmitter<boolean>();
 

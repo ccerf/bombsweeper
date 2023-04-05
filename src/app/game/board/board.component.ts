@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
-import { Cell } from "../models";
+import { Cell, Score } from "../models";
 import { CommonModule } from "@angular/common";
 import { InfobarComponent } from "../infobar/infobar.component";
 import { DialogResultComponent } from "../dialog-result/dialog-result.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faBomb } from "@fortawesome/free-solid-svg-icons";
 import { faFlag } from "@fortawesome/free-regular-svg-icons";
+import { DocumentData, Firestore, collection, collectionData, orderBy, query } from "@angular/fire/firestore";
 
 @Component({
 	standalone: true,
@@ -23,6 +24,7 @@ export class BoardComponent implements OnInit, AfterViewInit {
 	public lose = false;
 	public win = false;
 	public currentLevel = "easy";
+	public rank = 0;
 
 	private rowsCount = 10;
 	private columnsCount = 10;
@@ -39,7 +41,14 @@ export class BoardComponent implements OnInit, AfterViewInit {
 	];
 	private cellsToClear = 0;
 
+	public easyScores: Score[] = [];
+	public mediumScores: Score[] = [];
+	public hardScores: Score[] = [];
+
+	constructor(private firestore: Firestore) {}
+
 	ngOnInit(): void {
+		this.getScores();
 		this.createBoard();
 	}
 
@@ -146,6 +155,17 @@ export class BoardComponent implements OnInit, AfterViewInit {
 		};
 	}
 
+	private getScores(): void {
+		const collectionInstance = collection(this.firestore, "scores");
+		const q = query(collectionInstance, orderBy("timer"));
+		collectionData(q).subscribe((result: DocumentData[]) => {
+			const scores = result as Score[];
+			this.easyScores = scores.filter((score) => score.level === "easy");
+			this.mediumScores = scores.filter((score) => score.level === "medium");
+			this.hardScores = scores.filter((score) => score.level === "hard");
+		});
+	}
+
 	private assignBombs(): void {
 		let assignedBombs = this.getBombCount();
 		while (assignedBombs < this.bombsCount) {
@@ -167,6 +187,59 @@ export class BoardComponent implements OnInit, AfterViewInit {
 		const y = Math.floor(Math.random() * this.columnsCount);
 		const x = Math.floor(Math.random() * this.rowsCount);
 		return this.cells[y][x];
+	}
+
+	private getRank(): void {
+		switch (this.currentLevel) {
+			case "medium":
+				if (
+					this.mediumScores.length < 51 &&
+					+this.mediumScores[this.mediumScores.length - 1].timer > +this.infobar.timer
+				) {
+					this.mediumScores.forEach((score, index) => {
+						if (+score.timer > +this.infobar.timer) {
+							if (index < 50 && this.rank === 0) {
+								this.rank = index + 1;
+								this.win = true;
+							}
+						}
+					});
+				} else {
+					this.win = true;
+					break;
+				}
+				break;
+			case "hard":
+				if (this.hardScores.length < 51 && +this.hardScores[this.hardScores.length - 1].timer > +this.infobar.timer) {
+					this.hardScores.forEach((score, index) => {
+						if (+score.timer > +this.infobar.timer) {
+							if (index < 50 && this.rank === 0) {
+								this.rank = index + 1;
+								this.win = true;
+							}
+						}
+					});
+				} else {
+					this.win = true;
+					break;
+				}
+				break;
+			default:
+				if (this.easyScores.length < 51 && +this.easyScores[this.easyScores.length - 1].timer > +this.infobar.timer) {
+					this.easyScores.forEach((score, index) => {
+						if (+score.timer > +this.infobar.timer) {
+							if (index < 50 && this.rank === 0) {
+								this.rank = index + 1;
+								this.win = true;
+							}
+						}
+					});
+				} else {
+					this.win = true;
+					break;
+				}
+				break;
+		}
 	}
 
 	private getBombCount(): number {
@@ -211,6 +284,6 @@ export class BoardComponent implements OnInit, AfterViewInit {
 
 	private onWin(): void {
 		this.infobar.stopTimer();
-		this.win = true;
+		this.getRank();
 	}
 }
