@@ -103,6 +103,7 @@ export class BoardComponent implements OnInit, AfterViewInit {
 	public reset(): void {
 		this.win = false;
 		this.lose = false;
+		this.rank = 0;
 		this.createBoard();
 		this.resetInfobar();
 	}
@@ -194,10 +195,10 @@ export class BoardComponent implements OnInit, AfterViewInit {
 			case "medium":
 				if (
 					this.mediumScores.length < 51 &&
-					+this.mediumScores[this.mediumScores.length - 1].timer > +this.infobar.timer
+					+this.mediumScores[this.mediumScores.length - 1].timer >= +this.infobar.timer
 				) {
 					this.mediumScores.forEach((score, index) => {
-						if (+score.timer > +this.infobar.timer) {
+						if (+score.timer >= +this.infobar.timer) {
 							if (index < 50 && this.rank === 0) {
 								this.rank = index + 1;
 								this.win = true;
@@ -210,9 +211,9 @@ export class BoardComponent implements OnInit, AfterViewInit {
 				}
 				break;
 			case "hard":
-				if (this.hardScores.length < 51 && +this.hardScores[this.hardScores.length - 1].timer > +this.infobar.timer) {
+				if (this.hardScores.length < 51 && +this.hardScores[this.hardScores.length - 1].timer >= +this.infobar.timer) {
 					this.hardScores.forEach((score, index) => {
-						if (+score.timer > +this.infobar.timer) {
+						if (+score.timer >= +this.infobar.timer) {
 							if (index < 50 && this.rank === 0) {
 								this.rank = index + 1;
 								this.win = true;
@@ -225,9 +226,9 @@ export class BoardComponent implements OnInit, AfterViewInit {
 				}
 				break;
 			default:
-				if (this.easyScores.length < 51 && +this.easyScores[this.easyScores.length - 1].timer > +this.infobar.timer) {
+				if (this.easyScores.length < 51 && +this.easyScores[this.easyScores.length - 1].timer >= +this.infobar.timer) {
 					this.easyScores.forEach((score, index) => {
-						if (+score.timer > +this.infobar.timer) {
+						if (+score.timer >= +this.infobar.timer) {
 							if (index < 50 && this.rank === 0) {
 								this.rank = index + 1;
 								this.win = true;
