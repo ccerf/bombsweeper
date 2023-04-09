@@ -35,7 +35,6 @@ export class ScoreFormComponent implements OnInit {
 		const collectionInstance = collection(this.firestore, "scores");
 		addDoc(collectionInstance, form.value)
 			.then(() => {
-				console.log("success");
 				this.emitReset();
 			})
 			.catch((error) => {

@@ -29,7 +29,6 @@ export class ScoresTableComponent implements OnInit {
 			this.easyScores = scores.filter((score) => score.level === "easy");
 			this.mediumScores = scores.filter((score) => score.level === "medium");
 			this.hardScores = scores.filter((score) => score.level === "hard");
-			console.log(this.easyScores, this.mediumScores, this.hardScores);
 		});
 	}
 }

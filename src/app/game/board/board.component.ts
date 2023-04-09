@@ -95,7 +95,8 @@ export class BoardComponent implements OnInit, AfterViewInit {
 			cell.status = "flag";
 			this.infobar.flagCount--;
 		}
-		if (this.cellsToClear - this.bombsCount === 0) {
+		if (this.cellsToClear + this.infobar.flagCount === 0) {
+			console.log("2", this.cellsToClear, this.bombsCount);
 			this.onWin();
 		}
 	}
@@ -284,7 +285,6 @@ export class BoardComponent implements OnInit, AfterViewInit {
 	}
 
 	private onWin(): void {
-		console.log(this);
 		this.infobar.stopTimer();
 		this.getRank();
 	}
