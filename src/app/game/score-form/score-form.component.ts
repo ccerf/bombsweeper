@@ -2,11 +2,12 @@ import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { Firestore, collection, addDoc } from "@angular/fire/firestore";
+import { LoaderComponent } from "../loader/loader.component";
 
 @Component({
 	standalone: true,
 	selector: "app-score-form",
-	imports: [CommonModule, ReactiveFormsModule],
+	imports: [CommonModule, ReactiveFormsModule, LoaderComponent],
 	templateUrl: "./score-form.component.html",
 	styleUrls: ["./score-form.component.scss"],
 })
@@ -16,6 +17,7 @@ export class ScoreFormComponent implements OnInit {
 	@Output() newGame = new EventEmitter();
 
 	public form: FormGroup;
+	public loading = false;
 
 	constructor(private formBuilder: FormBuilder, private firestore: Firestore) {}
 
@@ -32,12 +34,15 @@ export class ScoreFormComponent implements OnInit {
 	}
 
 	onSubmit(form: any) {
+		this.loading = true;
 		const collectionInstance = collection(this.firestore, "scores");
 		addDoc(collectionInstance, form.value)
 			.then(() => {
+				this.loading = false;
 				this.emitReset();
 			})
 			.catch((error) => {
+				this.loading = false;
 				console.log(error);
 			});
 	}

@@ -1,0 +1,20 @@
+.loader {
+	border-bottom: 8px solid blue;
+	border-left: 8px solid blue;
+	border-top: 8px solid blue;
+	border-right: 8px solid transparent;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: block;
+	animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
