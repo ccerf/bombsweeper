@@ -2,11 +2,12 @@
 
 Bombsweeper is my version of the classic Minesweeper game !
 
-This project was the opportunity for me to try a few things.
-First of all, Angular `standalone components` with Anular v15.
-It was also my first shot at `Tailwind CSS` (<3)
-End finaly, I deployed the project to `Firebase`. You can find the game right here : https://bomb-sweeper-5143c.web.app/ 
-Will you beat my high score ?
+This project was the opportunity for me to try a few things.  
+First of all, Angular `standalone components` with Anular v15.  
+It was also my first shot at `Tailwind CSS` (<3)  
+End finaly, I deployed the project to `Firebase`.   
+You can find the game right here : https://bomb-sweeper-5143c.web.app/   
+Will you beat my high score ?  
 
 ![image](https://user-images.githubusercontent.com/120521130/231287676-c3d5fbb9-a3e7-4613-8308-fc9f2a6e8dd4.png)
 
