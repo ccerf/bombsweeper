@@ -1,12 +1,14 @@
 <nav flex>
-	<ul class="flex flex-row gap-3 text-xl font-bold text-white">
+	<ul class="flex flex-row flex-wrap gap-3 text-xl font-bold text-white">
 		<li class="p-2 rounded-sm hover:bg-sky-700 ease-in-out duration-300">
 			<a routerLink="" class="pb-1" routerLinkActive="border-b border-white" [routerLinkActiveOptions]="{ exact: true }"
 				>Game</a
 			>
 		</li>
 		<li class="p-2 rounded-sm hover:bg-sky-700 ease-in-out duration-300">
-			<a routerLink="/high-scores" class="pb-1" routerLinkActive="border-b border-white">High Scores</a>
+			<a routerLink="/high-scores" class="pb-1 whitespace-nowrap" routerLinkActive="border-b border-white"
+				>High Scores</a
+			>
 		</li>
 	</ul>
 </nav>
