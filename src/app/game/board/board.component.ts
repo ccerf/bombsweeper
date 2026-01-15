@@ -7,11 +7,12 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faBomb } from "@fortawesome/free-solid-svg-icons";
 import { faFlag } from "@fortawesome/free-regular-svg-icons";
 import { DocumentData, Firestore, collection, collectionData, orderBy, query } from "@angular/fire/firestore";
+import { NoTranslateDirective } from "src/app/shared/directives/no-translate.directive";
 
 @Component({
 	standalone: true,
 	selector: "app-board",
-	imports: [CommonModule, InfobarComponent, DialogResultComponent, FontAwesomeModule],
+	imports: [CommonModule, InfobarComponent, DialogResultComponent, FontAwesomeModule, NoTranslateDirective],
 	templateUrl: "./board.component.html",
 	styleUrls: ["./board.component.scss"],
 })

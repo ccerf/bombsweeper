@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFlag } from '@fortawesome/free-regular-svg-icons';
+import { NoTranslateDirective } from 'src/app/shared/directives/no-translate.directive';
 
 @Component({
   standalone: true,
   selector: 'app-infobar',
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, NoTranslateDirective],
   templateUrl: './infobar.component.html',
   styleUrls: ['./infobar.component.scss']
 })
