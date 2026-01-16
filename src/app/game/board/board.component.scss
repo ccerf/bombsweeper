@@ -1,16 +1,27 @@
-td {
-    border: 1px solid black;
-    height: 30px;
-    width: 30px;
-    min-width: 30px;
-    min-height: 30px;
-    // background-color: rgb(185, 184, 184);
-}
-
 .flag, .clear {
     background-color: rgb(240, 240, 240);
 }
 
 .bomb {
     background-color: red;
+}
+
+td {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: clamp(20px, 2.5vw, 30px);
+    width: clamp(20px, 2.5vw, 30px);
+    min-width: clamp(20px, 2.5vw, 30px);
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+@media (max-width: 640px) {
+    td {
+        height: 24px;
+        width: 24px;
+        min-width: 24px;
+    }
+    fa-icon {
+        font-size: 12px;
+    }
 }
