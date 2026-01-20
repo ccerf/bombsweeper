@@ -1,11 +1,23 @@
 .dialog-container {
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.85);
-    position: absolute;
-    top:0;
+    position: fixed;
+    /* On force l'ancrage aux 4 coins de la fenêtre */
+    top: 0;
     left: 0;
-    height: 100vh;
+    right: 0;
+    bottom: 0;
+    
+    /* On utilise 100vw/vh pour être sûr de couvrir tout l'écran */
     width: 100vw;
+    height: 100vh;
+    height: 100dvh; /* dynamic viewport height pour mobile */
+    
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .result-container {

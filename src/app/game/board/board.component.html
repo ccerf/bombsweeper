@@ -43,14 +43,14 @@
 		</table>
 		<button (click)="reset()" class="bg-blue-500 text-white mt-6 p-4 rounded-lg hover:opacity-80">Reset</button>
 	</div>
-
-	<app-dialog-result
-		*ngIf="win || lose"
-		[win]="win"
-		[lose]="lose"
-		[timer]="infobar.timer.toString()"
-		(resetEvent)="reset()"
-		[level]="currentLevel"
-		[rank]="rank"
-	></app-dialog-result>
 </div>
+
+<app-dialog-result
+	*ngIf="win || lose"
+	[win]="win"
+	[lose]="lose"
+	[timer]="infobar.timer.toString()"
+	(resetEvent)="reset()"
+	[level]="currentLevel"
+	[rank]="rank"
+></app-dialog-result>
