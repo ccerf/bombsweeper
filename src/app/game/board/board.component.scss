@@ -5,23 +5,23 @@
 .bomb {
     background-color: red;
 }
-
 td {
+    width: clamp(16px, 2.5vw, 24px);
+    height: clamp(16px, 2.5vw, 24px);
+    min-width: clamp(16px, 2.5vw, 24px);
+    min-height: clamp(16px, 2.5vw, 24px);
+    aspect-ratio: 1 / 1;
+
     border: 1px solid rgba(0, 0, 0, 0.2);
-    height: clamp(20px, 2.5vw, 30px);
-    width: clamp(20px, 2.5vw, 30px);
-    min-width: clamp(20px, 2.5vw, 30px);
-    font-size: 0.8rem;
-    line-height: 1;
+    
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
 }
 
-@media (max-width: 640px) {
-    td {
-        height: 24px;
-        width: 24px;
-        min-width: 24px;
-    }
-    fa-icon {
-        font-size: 12px;
-    }
+table {
+    table-layout: fixed;
+    width: fit-content;
 }
