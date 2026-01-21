@@ -5,20 +5,23 @@
 .bomb {
     background-color: red;
 }
-td {
-    width: clamp(16px, 2.5vw, 24px);
-    height: clamp(16px, 2.5vw, 24px);
-    min-width: clamp(16px, 2.5vw, 24px);
-    min-height: clamp(16px, 2.5vw, 24px);
-    aspect-ratio: 1 / 1;
 
-    border: 1px solid rgba(0, 0, 0, 0.2);
+td {
+    --size: clamp(18px, 2.8vmin, 30px); 
+
+    width: var(--size);
+    height: var(--size);
+    min-width: var(--size);
+    min-height: var(--size);
     
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
     box-sizing: border-box;
     padding: 0;
     vertical-align: middle;
     text-align: center;
+    font-size: calc(var(--size) * 0.6); 
 }
 
 table {
